@@ -39,7 +39,7 @@ if (document.querySelector('.login')) {
     ) {
       if (inputPassword.value === inputPassConfirm.value) {
         registerUser(inputEmail.value, inputPassword.value);
-        window.location.href = '#/home';
+        window.location.href = '';
       } else {
         alertEmailR.innerHTML = '<span class="red"> Contraseñas no coinciden </span>';
       }
