@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable no-unused-vars */
 import {
   getAuth,
@@ -8,10 +7,10 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   onAuthStateChanged,
-  signOut,
+  //   signOut,
   /* eslint import/no-unresolved: */
-} from './firebase.js';
-import { onNavigate } from './routes/app.js';
+} from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js';
+import { onNavigate } from './components/app.js';
 import initApp from './initApp.js';
 
 // Iniciar Firebase
@@ -81,25 +80,26 @@ export function loginUserProfile() {
   return userValues;
 }
 
-export const logOut = () => auth.signOut();
-
-export const activeSession = () => {
-  /* const user = auth.currentUser;
+export const activeSession = (idSession) => {
+  const user = auth.currentUser;
   if (user !== null) {
     if (idSession) {
+      console.log('Estoy entrando a home');
       onNavigate('/home');
     }
   } else {
+    console.log('No estoy entrando al home');
     onNavigate('/login');
-  } */
+  }
 
-  onAuthStateChanged(auth, (user) => {
+/*   onAuthStateChanged(auth, (user) => {
+    console.log(user);
     if (user) {
       if (window.location.origin) {
         onNavigate('/home');
       }
     } else {
-      onNavigate('/');
+      onNavigate('/login');
     }
-  });
+  }); */
 };

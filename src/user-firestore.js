@@ -5,11 +5,8 @@ import {
   getDoc,
   setDoc,
   updateDoc,
-} from './firebase.js';
+} from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js';
 
-import initApp from './initApp.js';
-
-initApp();
 const db = getFirestore();
 
 export async function createUser(id, data) {

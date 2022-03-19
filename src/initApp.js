@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // Import the functions you need from the SDKs you need
 /* eslint import/no-unresolved: */
-import { initializeApp } from './firebase.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

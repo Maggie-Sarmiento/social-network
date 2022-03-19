@@ -1,12 +1,11 @@
-import {
+/* import {
   onGetPosts, deletePost, getPost, savePost, updatePost,
-} from '../firestore.js';
+} from '../firestore';
 
-export function listPosts(formHomeParam, btnPostParam) {
-  const formHome = formHomeParam;
-  const btnPost = btnPostParam;
-
-  const postContainer = document.createElement('div');
+export function listPosts() {
+  const formHome = document.getElementById('formHome');
+  const postContainer = document.getElementById('postContainer');
+  const btnPost = document.getElementById('btnPost');
 
   let editStatus = false;
   let id = '';
@@ -17,63 +16,20 @@ export function listPosts(formHomeParam, btnPostParam) {
     querySnapshot.forEach((doc) => {
       const post = doc.data();
 
-      const postContainerCard = document.createElement('section');
-      postContainerCard.classList.add('post-container-card');
-
-      // Contenedor del parrafo del post
-      const pPost = document.createElement('p');
-      pPost.innerHTML = post.message;
-
-      // -- Contenedor de botones
-      const postContainerButtons = document.createElement('div');
-      postContainerButtons.classList.add('post-container-btn');
-
-      // Boton de Likes
-      const btnLikePost = document.createElement('button');
-      btnLikePost.classList.add('btn-likes');
-      btnLikePost.setAttribute('data-id', doc.id);
-      const imgButton = document.createElement('img');
-      imgButton.classList.add('icon-likes');
-      imgButton.setAttribute('data-id', doc.id);
-      imgButton.title = 'corazon sin rellenar';
-      imgButton.src = 'https://svgshare.com/i/fEh.svg';
-      btnLikePost.appendChild(imgButton);
-
-      // Boton de Borrar
-      const btnDeletePost = document.createElement('button');
-      btnDeletePost.classList.add('btn-delete');
-      btnDeletePost.setAttribute('data-id', doc.id);
-      btnDeletePost.innerHTML = '🗑 Delete';
-
-      const btnEditPost = document.createElement('button');
-      btnEditPost.classList.add('btn-edit');
-      btnEditPost.setAttribute('data-id', doc.id);
-      btnEditPost.innerHTML = '🖉 Edit';
-
-      postContainerButtons.appendChild(btnLikePost);
-      postContainerButtons.appendChild(btnDeletePost);
-      postContainerButtons.appendChild(btnEditPost);
-
-      // Agregar container p y container button a Container general
-      postContainerCard.appendChild(pPost);
-      postContainerCard.appendChild(postContainerButtons);
-
-      postContainer.appendChild(postContainerCard);
+      postContainer.innerHTML += `
+      <div class="card card-body mt-2 border-primary">
+      <p>${post.message}</p>
+      <div>
+      <button class="btn btn-primary btn-delete" data-id="${doc.id}">
+        🗑 Delete
+      </button>
+      <button class="btn btn-secondary btn-edit" data-id="${doc.id}">
+        🖉 Edit
+      </button>
+      </div>
+      `;
     });
 
-    // like a post
-    const btnsLikes = document.querySelectorAll('.btn-likes');
-    btnsLikes.forEach((btn) => {
-      btn.addEventListener('click', async ({ target: { dataset } }) => {
-        const postId = dataset.id;
-        const postData = await getPost(postId);
-        let likes = postData.data().likes;
-        likes += 1;
-        updatePost(postId, { likes });
-      });
-    });
-
-    // Borrar un post
     const btnsDelete = postContainer.querySelectorAll('.btn-delete');
     btnsDelete.forEach((btn) => btn.addEventListener('click', async ({ target: { dataset } }) => {
       try {
@@ -85,22 +41,53 @@ export function listPosts(formHomeParam, btnPostParam) {
       }
     }));
 
-    // Editamos el post
     const btnsEdit = postContainer.querySelectorAll('.btn-edit');
     btnsEdit.forEach((btn) => btn.addEventListener('click', async (e) => {
       try {
         const doc = await getPost(e.target.dataset.id);
         const post = doc.data();
         formHome['description-posts'].value = post.message;
+        console.log(formHome['btn-post']);
 
         editStatus = true;
         id = doc.id;
         btnPost.innerHTML = 'Guardar';
+        // formHome['btn-post'] = 'update';
       } catch (error) {
         console.log(error);
       }
     }));
   });
+
+  // Borramos un post
+  const btnsDelete = postContainer.querySelectorAll('.btn-delete');
+  btnsDelete.forEach((btn) => btn.addEventListener('click', async ({ target: { dataset } }) => {
+    try {
+      if (window.confirm('Estas seguro de que quieres eliminar este post?')) {
+        await deletePost(dataset.id);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }));
+
+  // Editamos el post
+  const btnsEdit = postContainer.querySelectorAll('.btn-edit');
+  btnsEdit.forEach((btn) => btn.addEventListener('click', async (e) => {
+    try {
+      const doc = await getPost(e.target.dataset.id);
+      const post = doc.data();
+      formHome['description-posts'].value = post.message;
+      console.log(formHome['btn-post']);
+
+      editStatus = true;
+      id = doc.id;
+      btnPost.innerHTML = 'Guardar';
+      // formHome['btn-post'] = 'update';
+    } catch (error) {
+      console.log(error);
+    }
+  }));
 
   // Enviamos el post
   formHome.addEventListener('submit', async (e) => {
@@ -119,6 +106,7 @@ export function listPosts(formHomeParam, btnPostParam) {
         editStatus = false;
         id = '';
         btnPost.innerHTML = 'Publicar';
+        // formHome['btn-post'] = 'publicar';
       }
 
       formHome.reset();
@@ -126,5 +114,5 @@ export function listPosts(formHomeParam, btnPostParam) {
       console.log(error);
     }
   });
-  return postContainer;
 }
+*/
