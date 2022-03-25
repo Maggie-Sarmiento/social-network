@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export const initializeApp = () => ({});
 export const getFirestore = () => ({});
 export const doc = () => ({});

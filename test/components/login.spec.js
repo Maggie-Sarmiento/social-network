@@ -1,5 +1,4 @@
 // import { loginUser } from '../../src/auth.js';
-import { loginUser } from '../../src/auth.js';
 import login from '../../src/views/login.js';
 
 jest.mock('../../src/firebase.js');
